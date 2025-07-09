@@ -1,0 +1,22 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ABANDONED",
+      "text": "I waited. And waited. Will you wait with me?",
+      "sequenceId": "SCENE_06/SEQUENCE_06C"
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "I can\u2019t stay. But I\u2019ll carry you with me.",
+      "sequenceId": "SCENE_06/SEQUENCE_06C"
+    },
+    {
+      "type": "character",
+      "speaker": "ABANDONED",
+      "text": "That\u2019s more than I ever had.",
+      "sequenceId": "SCENE_06/SEQUENCE_06C"
+    }
+  ]
+}

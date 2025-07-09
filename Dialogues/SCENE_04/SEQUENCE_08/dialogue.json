@@ -1,0 +1,14 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"You okay?\""
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"No. But I remember who I was now. And what I let them do to me.\""
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "You say nothing. The air thickens. SHARD speaks softer, as if trying to comfort a child."
+    },
+    {
+      "type": "character",
+      "speaker": "SHARD",
+      "text": "\"You were never one for words. Riven said silence was your shield. Let me show you what they left behind.\""
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "RIVEN (OLD RECORDING)",
+      "text": "\"If you\u2019re seeing this\u2026 then you followed the voice. SHARD doesn\u2019t kill. It remembers you too hard to let go. Don\u2019t let it in your head unless you're ready to drown in you.\"",
+      "sequenceId": "SCENE_01/SEQUENCE_08A"
+    }
+  ]
+}

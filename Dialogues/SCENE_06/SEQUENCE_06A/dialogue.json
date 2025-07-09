@@ -1,0 +1,22 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "PERFORMER",
+      "text": "Did I make you laugh? Was I enough?",
+      "sequenceId": "SCENE_06/SEQUENCE_06A"
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "You don\u2019t have to be anything. You\u2019re allowed to hurt.",
+      "sequenceId": "SCENE_06/SEQUENCE_06A"
+    },
+    {
+      "type": "character",
+      "speaker": "PERFORMER",
+      "text": "But if I hurt... what was the point?",
+      "sequenceId": "SCENE_06/SEQUENCE_06A"
+    }
+  ]
+}

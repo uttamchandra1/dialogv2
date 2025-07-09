@@ -1,0 +1,23 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH (narration)",
+      "text": "\"I found part of Riven. It spoke like them. It felt like them.\""
+    },
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"Then this isn\u2019t about surviving Erebus anymore, is it?\""
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"It\u2019s about rescuing what\u2019s real from what\u2019s been rewritten.\""
+    },
+    {
+      "type": "narration",
+      "text": "New Objective: Locate next fragment in Emotional Conditioning Chamber"
+    }
+  ]
+}

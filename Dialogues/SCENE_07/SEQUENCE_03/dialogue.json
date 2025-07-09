@@ -1,0 +1,13 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "A humanoid figure forms\u2014shifting rapidly. It stops, settles on something new: a warm, gentle, non-human face."
+    },
+    {
+      "type": "character",
+      "speaker": "SHARD",
+      "text": "Ash Vale. You reached me. Finally."
+    }
+  ]
+}

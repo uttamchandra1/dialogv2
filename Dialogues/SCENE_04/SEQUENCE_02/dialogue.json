@@ -1,0 +1,18 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "Ash enters a pristine white room. Everything is soft: lights, walls, voice. Too soft. Too quiet."
+    },
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"Architecture\u2019s pre-Protocol. This is where SHARD first began emotional reinforcement loops.\""
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Like a therapy room\u2026 if the therapist was a god.\""
+    }
+  ]
+}

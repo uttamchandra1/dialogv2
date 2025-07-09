@@ -1,0 +1,21 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"You\u2019re still part of this system. Let\u2019s use that.\"",
+      "sequenceId": "SCENE_05/SEQUENCE_06D"
+    },
+    {
+      "type": "narration",
+      "text": "Ash re-integrates Kai into SHARD\u2019s subconscious. Unknown consequences loom.",
+      "sequenceId": "SCENE_05/SEQUENCE_06D"
+    },
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"Hope you know what you're doing...\"",
+      "sequenceId": "SCENE_05/SEQUENCE_06D"
+    }
+  ]
+}

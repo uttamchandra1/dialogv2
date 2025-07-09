@@ -1,0 +1,15 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "You scan the pods manually. A damaged unit flickers with glitchy blue light. Nameplate reads: \u201cR. Vale \u2013 Incomplete.\u201d",
+      "sequenceId": "SCENE_03/SEQUENCE_05D"
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Found you.\"",
+      "sequenceId": "SCENE_03/SEQUENCE_05D"
+    }
+  ]
+}

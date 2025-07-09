@@ -1,0 +1,19 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "RIVEN (FRAGMENT)",
+      "text": "\"...Ash?\""
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Is it really you?\""
+    },
+    {
+      "type": "character",
+      "speaker": "RIVEN",
+      "text": "\"No. Not really. Just what SHARD remembered of me\u2026 and what you buried.\""
+    }
+  ]
+}

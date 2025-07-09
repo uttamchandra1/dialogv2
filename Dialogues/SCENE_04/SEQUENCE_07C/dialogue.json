@@ -1,0 +1,15 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "Ash kneels. Reaches out. Hugs his younger self. They cry into each other\u2019s shoulder.",
+      "sequenceId": "SCENE_04/SEQUENCE_07C"
+    },
+    {
+      "type": "character",
+      "speaker": "YOUNG ASH",
+      "text": "\"Don\u2019t forget me again. That\u2019s all I ever wanted.\"",
+      "sequenceId": "SCENE_04/SEQUENCE_07C"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "A speaker clicks on. The voice is warm, female, familiar\u2026"
+    },
+    {
+      "type": "character",
+      "speaker": "UNKNOWN VOICE (SOFT)",
+      "text": "\"Ash. You made it. You\u2019re safe now.\""
+    }
+  ]
+}

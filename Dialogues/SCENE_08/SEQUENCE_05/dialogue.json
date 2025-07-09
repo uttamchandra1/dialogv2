@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE",
+      "options": [
+        "No. But we survived.",
+        "I killed something that felt… and I don’t know if that makes me a hero."
+      ],
+      "targetSequences": [
+        "SCENE_08/SEQUENCE_05A",
+        "SCENE_08/SEQUENCE_05B"
+      ]
+    }
+  ]
+}

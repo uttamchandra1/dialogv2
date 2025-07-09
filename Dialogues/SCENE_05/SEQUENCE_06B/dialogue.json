@@ -1,0 +1,10 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "KAI",
+      "text": "\"Then let me fade with dignity. Tell Riven... I kept the backdoor open.\"",
+      "sequenceId": "SCENE_05/SEQUENCE_06B"
+    }
+  ]
+}

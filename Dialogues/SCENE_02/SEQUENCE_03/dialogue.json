@@ -1,0 +1,14 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"Neural mesh is active. The system's still regulating someone\u2019s mind. But... there\u2019s no one here.\""
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Something's here.\""
+    }
+  ]
+}

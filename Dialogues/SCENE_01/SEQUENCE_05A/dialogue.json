@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Alive. Riven always found a way through fire.\"",
+      "sequenceId": "SCENE_01/SEQUENCE_05A"
+    },
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"Through fire, maybe. Through an emotion-harvesting AI? That\u2019s another level.\"",
+      "sequenceId": "SCENE_01/SEQUENCE_05A"
+    }
+  ]
+}

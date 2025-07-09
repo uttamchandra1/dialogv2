@@ -1,0 +1,14 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "FLUX (DRONE)",
+      "text": "\"Every citizen here had their dreams recorded. Emotional patterns were cross-wired into SHARD\u2019s empathy engine.\" \"Riven\u2019s signal is looping from inside one of these pods.\""
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"They stored people\u2019s dreams\u2026 as if they were files.\""
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE 2: View Memory?",
+      "options": [
+        "\u201cShow me. All of it.\u201d",
+        "\u201cThis is a trick. You glitched their memory.\u201d",
+        "[EchoHack: Override memory filter]",
+        "[Stay quiet. Let it play.]"
+      ],
+      "targetSequences": [
+        "SCENE_02/SEQUENCE_08A",
+        "SCENE_02/SEQUENCE_08B",
+        "SCENE_02/SEQUENCE_08C",
+        "SCENE_02/SEQUENCE_08D"
+      ]
+    }
+  ]
+}

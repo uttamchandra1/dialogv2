@@ -1,0 +1,20 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE 2",
+      "options": [
+        "Help The Performer",
+        "Help The Protector",
+        "Help The Abandoned",
+        "Attempt to shut down the entire garden"
+      ],
+      "targetSequences": [
+        "SCENE_06/SEQUENCE_06A",
+        "SCENE_06/SEQUENCE_06B",
+        "SCENE_06/SEQUENCE_06C",
+        "SCENE_06/SEQUENCE_06D"
+      ]
+    }
+  ]
+}

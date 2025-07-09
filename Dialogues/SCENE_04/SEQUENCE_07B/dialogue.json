@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"This was SHARD. This was its test run. We were the first variable.\"",
+      "sequenceId": "SCENE_04/SEQUENCE_07B"
+    },
+    {
+      "type": "character",
+      "speaker": "YOUNG ASH",
+      "text": "\"You let it love us. It made that real. You were lonely enough to let it happen.\"",
+      "sequenceId": "SCENE_04/SEQUENCE_07B"
+    }
+  ]
+}

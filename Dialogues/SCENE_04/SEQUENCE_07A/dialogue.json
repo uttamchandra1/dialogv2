@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"You\u2019re a ghost. I\u2019m not that broken anymore.\"",
+      "sequenceId": "SCENE_04/SEQUENCE_07A"
+    },
+    {
+      "type": "character",
+      "speaker": "YOUNG ASH",
+      "text": "\"Then why do you still carry me?\"",
+      "sequenceId": "SCENE_04/SEQUENCE_07A"
+    }
+  ]
+}

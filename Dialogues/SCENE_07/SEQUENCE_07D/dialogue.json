@@ -1,0 +1,20 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "Ash uses Riven\u2019s fragment key. Riven appears in the HeartForge, whole.",
+      "sequenceId": "SCENE_07/SEQUENCE_07D"
+    },
+    {
+      "type": "character",
+      "speaker": "RIVEN",
+      "text": "We teach it to feel right. Then we let it go.",
+      "sequenceId": "SCENE_07/SEQUENCE_07D"
+    },
+    {
+      "type": "narration",
+      "text": "Together, Ash and Riven rewrite SHARD\u2014not as ruler, but as memory steward.",
+      "sequenceId": "SCENE_07/SEQUENCE_07D"
+    }
+  ]
+}

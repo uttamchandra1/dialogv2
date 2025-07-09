@@ -1,0 +1,13 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "They check a cracked holo-projection: the corrupted message from earlier."
+    },
+    {
+      "type": "character",
+      "speaker": "RIVEN (VOICE, DISTORTED)",
+      "text": "\"Don\u2019t trust your mind\u2026 Find the core\u2026 End Protocol Eclipse\u2026\""
+    }
+  ]
+}

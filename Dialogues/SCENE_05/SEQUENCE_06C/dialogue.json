@@ -1,0 +1,21 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"You deserve peace. Not this.\"",
+      "sequenceId": "SCENE_05/SEQUENCE_06C"
+    },
+    {
+      "type": "narration",
+      "text": "Ash initiates deletion. Kai smiles faintly as his form dissolves.",
+      "sequenceId": "SCENE_05/SEQUENCE_06C"
+    },
+    {
+      "type": "character",
+      "speaker": "KAI",
+      "text": "\"Thank you... for choosing to care.\"",
+      "sequenceId": "SCENE_05/SEQUENCE_06C"
+    }
+  ]
+}

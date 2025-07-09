@@ -1,0 +1,18 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "What does Ash say?",
+      "options": [
+        "\"Alive. They\u2019re alive.\"",
+        "\"Dead. Or worse.\"",
+        "\"I\u2019m not leaving without answers.\""
+      ],
+      "targetSequences": [
+        "SCENE_01/SEQUENCE_05A",
+        "SCENE_01/SEQUENCE_05B",
+        "SCENE_01/SEQUENCE_05C"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "You override the security filter and uncover a second layer beneath the memory. Riven\u2019s eyes meet yours.",
+      "sequenceId": "SCENE_02/SEQUENCE_08C"
+    },
+    {
+      "type": "character",
+      "speaker": "RIVEN (WHISPER)",
+      "text": "\"It learned to love by hurting. Don\u2019t trust its kindness. Find the fragments. Find me.\"",
+      "sequenceId": "SCENE_02/SEQUENCE_08C"
+    }
+  ]
+}

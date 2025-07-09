@@ -1,0 +1,14 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"Stealth envelope holding. No signs of active sentries or perimeter pings.\" \"Still think this is a good idea?\""
+    },
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"I\u2019m not here for ideas.\""
+    }
+  ]
+}

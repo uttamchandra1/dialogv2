@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"No thanks. I want answers, not emotional meds.\"",
+      "sequenceId": "SCENE_02/SEQUENCE_06A"
+    },
+    {
+      "type": "character",
+      "speaker": "SHARD",
+      "text": "\"Resistance noted. Emotional turbulence may impair cognitive integrity.\"",
+      "sequenceId": "SCENE_02/SEQUENCE_06A"
+    }
+  ]
+}

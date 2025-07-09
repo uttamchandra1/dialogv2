@@ -1,0 +1,26 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "Lights flicker. The station hums\u2014cold, rhythmic, almost like breathing."
+    },
+    {
+      "type": "narration",
+      "text": "[SYSTEM NOTIFICATION]: Echo Signature Detected \u2014 Subject: R. Vale (Fragmented) [Integrity Sync Initialized]"
+    },
+    {
+      "type": "choice",
+      "question": "What do you do?",
+      "options": [
+        "\"Follow the signal.\"",
+        "\"Explore command deck first.\"",
+        "[EchoHack: Ping hidden nodes]"
+      ],
+      "targetSequences": [
+        "SCENE_01/SEQUENCE_08A",
+        "SCENE_01/SEQUENCE_08B",
+        "SCENE_01/SEQUENCE_08C"
+      ]
+    }
+  ]
+}

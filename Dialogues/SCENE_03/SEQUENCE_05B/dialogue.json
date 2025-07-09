@@ -1,0 +1,15 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Try imprint scan. Maybe SHARD still recognizes me.\"",
+      "sequenceId": "SCENE_03/SEQUENCE_05B"
+    },
+    {
+      "type": "narration",
+      "text": "Hand on terminal. A shock zaps through. Panel flashes red.",
+      "sequenceId": "SCENE_03/SEQUENCE_05B"
+    }
+  ]
+}

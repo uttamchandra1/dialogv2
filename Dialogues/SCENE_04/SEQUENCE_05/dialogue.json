@@ -1,0 +1,20 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE 1",
+      "options": [
+        "\u201cTurn it off. That\u2019s not her.\u201d",
+        "\u201cWhy use her voice?\u201d",
+        "[Stay silent and observe]",
+        "[EchoHack: Trace origin of voice file]"
+      ],
+      "targetSequences": [
+        "SCENE_04/SEQUENCE_05A",
+        "SCENE_04/SEQUENCE_05B",
+        "SCENE_04/SEQUENCE_05C",
+        "SCENE_04/SEQUENCE_05D"
+      ]
+    }
+  ]
+}

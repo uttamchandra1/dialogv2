@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Answers. That's the only reason I still breathe.\"",
+      "sequenceId": "SCENE_01/SEQUENCE_05C"
+    },
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"Just hope you like what you find.\"",
+      "sequenceId": "SCENE_01/SEQUENCE_05C"
+    }
+  ]
+}

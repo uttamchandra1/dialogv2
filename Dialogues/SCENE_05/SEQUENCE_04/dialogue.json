@@ -1,0 +1,20 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE 1",
+      "options": [
+        "\u201cYou\u2019re a fragment like Riven?\u201d",
+        "\u201cYou were a test subject.\u201d",
+        "\u201cI can help get you out.\u201d",
+        "[EchoHack: Scan Kai\u2019s neural integrity]"
+      ],
+      "targetSequences": [
+        "SCENE_05/SEQUENCE_04A",
+        "SCENE_05/SEQUENCE_04B",
+        "SCENE_05/SEQUENCE_04C",
+        "SCENE_05/SEQUENCE_04D"
+      ]
+    }
+  ]
+}

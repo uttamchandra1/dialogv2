@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Why her? Why now?\"",
+      "sequenceId": "SCENE_04/SEQUENCE_05B"
+    },
+    {
+      "type": "character",
+      "speaker": "VOICE",
+      "text": "\"Because she was your anchor. And SHARD believes love is the first step to obedience.\"",
+      "sequenceId": "SCENE_04/SEQUENCE_05B"
+    }
+  ]
+}

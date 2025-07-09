@@ -1,0 +1,15 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "Ash scans the threads: every NPC is a synthetic emotion loop, created to model real people. A few threads include Riven\u2019s coded signature\u2014possibly simulations they personally built.",
+      "sequenceId": "SCENE_06/SEQUENCE_04D"
+    },
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "Some of these people were meant to die. SHARD reassembled their pain into therapy blueprints.",
+      "sequenceId": "SCENE_06/SEQUENCE_04D"
+    }
+  ]
+}

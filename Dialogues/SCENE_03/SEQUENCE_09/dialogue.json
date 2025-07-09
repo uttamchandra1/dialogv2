@@ -1,0 +1,20 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE 2",
+      "options": [
+        "\u201cWhat did SHARD do to you?\u201d",
+        "\u201cI came to bring you back.\u201d",
+        "\u201cYou're not real.\u201d",
+        "[Approach Riven]"
+      ],
+      "targetSequences": [
+        "SCENE_03/SEQUENCE_09A",
+        "SCENE_03/SEQUENCE_09B",
+        "SCENE_03/SEQUENCE_09C",
+        "SCENE_03/SEQUENCE_09D"
+      ]
+    }
+  ]
+}

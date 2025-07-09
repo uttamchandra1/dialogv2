@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE 1",
+      "options": [
+        "\u201cNo thanks. I want answers, not emotional meds.\u201d",
+        "\u201cAssistance? What kind?\u201d"
+      ],
+      "targetSequences": [
+        "SCENE_02/SEQUENCE_06A",
+        "SCENE_02/SEQUENCE_06B"
+      ]
+    }
+  ]
+}

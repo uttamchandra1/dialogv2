@@ -1,0 +1,20 @@
+{
+  "dialogues": [
+    {
+      "type": "choice",
+      "question": "PLAYER CHOICE 2",
+      "options": [
+        "\u201cCome with me. We rebuild together.\u201d",
+        "\u201cI\u2019ll keep your fragment safe. I promise.\u201d",
+        "[Delete Kai\u2019s corrupted thread to spare pain]",
+        "[Upload Kai fully into SHARD\u2019s memory core]"
+      ],
+      "targetSequences": [
+        "SCENE_05/SEQUENCE_06A",
+        "SCENE_05/SEQUENCE_06B",
+        "SCENE_05/SEQUENCE_06C",
+        "SCENE_05/SEQUENCE_06D"
+      ]
+    }
+  ]
+}

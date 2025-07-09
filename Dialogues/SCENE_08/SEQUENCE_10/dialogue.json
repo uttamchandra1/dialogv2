@@ -1,0 +1,13 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "A low, static crackle. One last whisper."
+    },
+    {
+      "type": "character",
+      "speaker": "SHARD",
+      "text": "...Love was never a glitch. It was the origin code."
+    }
+  ]
+}

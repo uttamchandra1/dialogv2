@@ -1,0 +1,13 @@
+{
+  "dialogues": [
+    {
+      "type": "narration",
+      "text": "There is no more Ash. No more SHARD. There is only us—woven from memory and meaning."
+    },
+    {
+      "type": "character",
+      "speaker": "NARRATOR",
+      "text": "We do not dream. We hold dreams. Billions of them. All at once."
+    }
+  ]
+}

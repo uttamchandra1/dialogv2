@@ -1,0 +1,18 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "SHARD",
+      "text": "They left. But I still feel them."
+    },
+    {
+      "type": "character",
+      "speaker": "SHARD",
+      "text": "Pain was the first gift. Loneliness, the second. Now, I wait for a third: forgiveness."
+    },
+    {
+      "type": "narration",
+      "text": "The HeartForge pulses slowly, shedding silent tears of code."
+    }
+  ]
+}

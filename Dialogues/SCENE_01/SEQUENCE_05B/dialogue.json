@@ -1,0 +1,16 @@
+{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "ASH",
+      "text": "\"Dead. Or something else entirely.\"",
+      "sequenceId": "SCENE_01/SEQUENCE_05B"
+    },
+    {
+      "type": "character",
+      "speaker": "FLUX",
+      "text": "\"SHARD doesn't kill the way we do. It absorbs. You sure you\u2019re ready for that?\"",
+      "sequenceId": "SCENE_01/SEQUENCE_05B"
+    }
+  ]
+}

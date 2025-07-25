@@ -4,6 +4,7 @@ import gptConverterService from "../services/gptConverterService";
 const TextToJSONConverter = () => {
   const [inputText, setInputText] = useState("");
   const [currentScene, setCurrentScene] = useState("SCENE_01");
+  const [currentSequence, setCurrentSequence] = useState("SEQUENCE_01");
   const [outputJSON, setOutputJSON] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -20,7 +21,8 @@ const TextToJSONConverter = () => {
     try {
       const result = await gptConverterService.convertToJSON(
         inputText,
-        currentScene
+        currentScene,
+        currentSequence
       );
       setOutputJSON(JSON.stringify(result, null, 2));
     } catch (err) {
@@ -52,6 +54,25 @@ const TextToJSONConverter = () => {
                 (scene) => (
                   <option key={scene} value={scene}>
                     {scene}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Current Sequence
+            </label>
+            <select
+              value={currentSequence}
+              onChange={(e) => setCurrentSequence(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {Array.from({ length: 10 }, (_, i) => `SEQUENCE_0${i + 1}`).map(
+                (seq) => (
+                  <option key={seq} value={seq}>
+                    {seq}
                   </option>
                 )
               )}

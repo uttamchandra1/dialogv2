@@ -24,9 +24,11 @@ const DialogueConverter = () => {
     async (text, scene, sequence, title) => {
       try {
         const currentScene = `SCENE_${scene.padStart(2, "0")}`;
+        const currentSequence = `SEQUENCE_${sequence}`;
         const jsonResult = await gptConverterService.convertToJSON(
           text,
-          currentScene
+          currentScene,
+          currentSequence
         );
 
         return {

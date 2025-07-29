@@ -19,6 +19,11 @@ const DialogueConverter = () => {
   const [validationErrors, setValidationErrors] = useState([]);
   const [isValid, setIsValid] = useState(false);
 
+  // State for batch preview and editing
+  const [expandedBatchItems, setExpandedBatchItems] = useState(new Set());
+  const [editingItem, setEditingItem] = useState(null);
+  const [editedItems, setEditedItems] = useState(new Set());
+
   // New GPT conversion function
   const convertTextToJSON = useCallback(
     async (text, scene, sequence, title) => {
@@ -103,6 +108,82 @@ const DialogueConverter = () => {
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  // Functions for batch preview and editing
+  const toggleBatchItemExpansion = (itemId) => {
+    const newExpanded = new Set(expandedBatchItems);
+    if (newExpanded.has(itemId)) {
+      newExpanded.delete(itemId);
+    } else {
+      newExpanded.add(itemId);
+    }
+    setExpandedBatchItems(newExpanded);
+  };
+
+  const handleEditBatchItem = (item) => {
+    setEditingItem({
+      ...item,
+      editedText: item.inputText || "", // Use original input text for editing
+      editedMetadata: { ...item.metadata },
+    });
+  };
+
+  const handleSaveEditedItem = async () => {
+    if (!editingItem) return;
+
+    try {
+      setIsProcessing(true);
+
+      // Convert the edited text using GPT
+      const sceneNumber = editingItem.editedMetadata.scene.replace(
+        "SCENE_",
+        ""
+      );
+      const sequenceNumber = editingItem.editedMetadata.sequence.replace(
+        "SEQUENCE_",
+        ""
+      );
+
+      const updatedJson = await convertTextToJSON(
+        editingItem.editedText,
+        sceneNumber,
+        sequenceNumber,
+        editingItem.editedMetadata.title
+      );
+
+      // Update the batch dialogues array
+      setBatchDialogues((prev) =>
+        prev.map((item) =>
+          item.id === editingItem.id
+            ? {
+                ...updatedJson,
+                id: editingItem.id,
+                inputText: editingItem.editedText,
+                metadata: {
+                  ...updatedJson.metadata,
+                  title: editingItem.editedMetadata.title,
+                },
+              }
+            : item
+        )
+      );
+
+      // Mark this item as edited
+      setEditedItems((prev) => new Set([...prev, editingItem.id]));
+
+      // Close edit modal
+      setEditingItem(null);
+    } catch (error) {
+      console.error("Error saving edited item:", error);
+      alert("Error saving edited item. Please check the format.");
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingItem(null);
   };
 
   const handleAddToBatch = async () => {
@@ -455,42 +536,267 @@ GPT will automatically detect the format and convert it appropriately.`}
                 className="flex-1 bg-purple-600 text-white py-3 px-6 rounded-md hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               >
                 Export All as ZIP ({batchDialogues.length})
+                {editedItems.size > 0 && (
+                  <span className="ml-2 bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">
+                    with {editedItems.size} edits
+                  </span>
+                )}
               </button>
             </>
           )}
         </div>
       </div>
 
-      {/* Batch Dialogues List */}
+      {/* Enhanced Batch Dialogues List with Preview */}
       {showBatchMode && batchDialogues.length > 0 && (
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
-            Batch Dialogues ({batchDialogues.length})
-          </h3>
-          <div className="space-y-3">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-semibold text-gray-800">
+              Batch Dialogues ({batchDialogues.length})
+            </h3>
+            <div className="text-sm text-gray-600">
+              {editedItems.size > 0 && (
+                <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                  {editedItems.size} edited
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="space-y-4">
             {batchDialogues.map((item) => (
-              <div key={item.id} className="border rounded-lg p-4 bg-gray-50">
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <h4 className="font-medium text-gray-800">
-                      {item.metadata.scene} - {item.metadata.sequence}
-                    </h4>
-                    <p className="text-sm text-gray-600">
-                      {item.metadata.title}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      {item.dialogues.length} dialogues
-                    </p>
+              <div key={item.id} className="border rounded-lg bg-gray-50">
+                {/* Item Header */}
+                <div className="p-4">
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2">
+                        <h4 className="font-medium text-gray-800">
+                          {item.metadata.scene} - {item.metadata.sequence}
+                        </h4>
+                        {editedItems.has(item.id) && (
+                          <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">
+                            Edited
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        {item.metadata.title}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {item.dialogues.length} dialogues
+                      </p>
+                    </div>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => toggleBatchItemExpansion(item.id)}
+                        className="text-blue-600 hover:text-blue-800 text-sm"
+                      >
+                        {expandedBatchItems.has(item.id)
+                          ? "Hide Preview"
+                          : "Show Preview"}
+                      </button>
+                      <button
+                        onClick={() => handleEditBatchItem(item)}
+                        className="text-green-600 hover:text-green-800 text-sm"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleRemoveFromBatch(item.id)}
+                        className="text-red-600 hover:text-red-800 text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
-                  <button
-                    onClick={() => handleRemoveFromBatch(item.id)}
-                    className="ml-4 text-red-600 hover:text-red-800"
-                  >
-                    Remove
-                  </button>
                 </div>
+
+                {/* Expandable Preview */}
+                {expandedBatchItems.has(item.id) && (
+                  <div className="border-t bg-white p-4">
+                    <h5 className="font-medium text-gray-700 mb-3">
+                      JSON Preview
+                    </h5>
+                    <div className="bg-gray-50 rounded-md p-4 overflow-x-auto max-h-96 overflow-y-auto">
+                      <pre className="text-sm text-gray-800 whitespace-pre-wrap">
+                        {JSON.stringify(item.dialogues, null, 2)}
+                      </pre>
+                    </div>
+                    <div className="mt-3 flex justify-end space-x-2">
+                      <button
+                        onClick={() => {
+                          const jsonString = JSON.stringify(
+                            item.dialogues,
+                            null,
+                            2
+                          );
+                          const blob = new Blob([jsonString], {
+                            type: "application/json",
+                          });
+                          const url = URL.createObjectURL(blob);
+                          const a = document.createElement("a");
+                          a.href = url;
+                          a.download = `${item.metadata.scene}_${item.metadata.sequence}.json`;
+                          document.body.appendChild(a);
+                          a.click();
+                          document.body.removeChild(a);
+                          URL.revokeObjectURL(url);
+                        }}
+                        className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition-colors"
+                      >
+                        Export This JSON
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {editingItem && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center p-6 border-b">
+              <h3 className="text-xl font-semibold text-gray-800">
+                Edit Dialogue: {editingItem.metadata.scene} -{" "}
+                {editingItem.metadata.sequence}
+              </h3>
+              <button
+                onClick={handleCancelEdit}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
+              {/* Edit Metadata */}
+              <div className="mb-6">
+                <h4 className="font-medium text-gray-700 mb-3">Metadata</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Scene
+                    </label>
+                    <input
+                      type="text"
+                      value={editingItem.editedMetadata.scene}
+                      onChange={(e) =>
+                        setEditingItem((prev) => ({
+                          ...prev,
+                          editedMetadata: {
+                            ...prev.editedMetadata,
+                            scene: e.target.value,
+                          },
+                        }))
+                      }
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Sequence
+                    </label>
+                    <input
+                      type="text"
+                      value={editingItem.editedMetadata.sequence}
+                      onChange={(e) =>
+                        setEditingItem((prev) => ({
+                          ...prev,
+                          editedMetadata: {
+                            ...prev.editedMetadata,
+                            sequence: e.target.value,
+                          },
+                        }))
+                      }
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      value={editingItem.editedMetadata.title}
+                      onChange={(e) =>
+                        setEditingItem((prev) => ({
+                          ...prev,
+                          editedMetadata: {
+                            ...prev.editedMetadata,
+                            title: e.target.value,
+                          },
+                        }))
+                      }
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Edit Text Content */}
+              <div className="mb-6">
+                <h4 className="font-medium text-gray-700 mb-3">
+                  Dialogue Text
+                </h4>
+                <textarea
+                  value={editingItem.editedText}
+                  onChange={(e) =>
+                    setEditingItem((prev) => ({
+                      ...prev,
+                      editedText: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter your dialogue text here..."
+                  rows={15}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
+                />
+              </div>
+
+              {/* Preview Current JSON */}
+              <div className="mb-6">
+                <h4 className="font-medium text-gray-700 mb-3">
+                  Current JSON Preview
+                </h4>
+                <div className="bg-gray-50 rounded-md p-4 overflow-x-auto max-h-64 overflow-y-auto">
+                  <pre className="text-sm text-gray-800 whitespace-pre-wrap">
+                    {JSON.stringify(editingItem.dialogues, null, 2)}
+                  </pre>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex justify-end space-x-3 p-6 border-t bg-gray-50">
+              <button
+                onClick={handleCancelEdit}
+                className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveEditedItem}
+                disabled={isProcessing}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              >
+                {isProcessing ? "Saving..." : "Save Changes"}
+              </button>
+            </div>
           </div>
         </div>
       )}

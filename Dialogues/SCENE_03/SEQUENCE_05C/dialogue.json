@@ -1,9 +1,0 @@
-{
-  "dialogues": [
-    {
-      "type": "narration",
-      "text": "You forge a synthetic ID tag from dormant station files. Terminal glitches, confused.",
-      "sequenceId": "SCENE_03/SEQUENCE_05C"
-    }
-  ]
-}

@@ -71,18 +71,20 @@ IMPORTANT RULES:
             },
             {
               role: "assistant",
-              content: `[
-  {
-    "type": "character",
-    "speaker": "Holmes",
-    "text": "The game is afoot."
-  },
-  {
-    "type": "character",
-    "speaker": "Watson",
-    "text": "Indeed."
-  }
-]`,
+              content: `{
+  "dialogues": [
+    {
+      "type": "character",
+      "speaker": "Holmes",
+      "text": "The game is afoot."
+    },
+    {
+      "type": "character",
+      "speaker": "Watson",
+      "text": "Indeed."
+    }
+  ]
+}`,
             },
             {
               role: "user",
@@ -130,6 +132,13 @@ IMPORTANT RULES:
           item.targetSequences = suffixes.map(
             (suffix) => `${currentScene}/${baseSequence}${suffix}`
           );
+        }
+      });
+
+      // After generation, clean up any stray targetSequences from non-choice items
+      parsed.dialogues.forEach((item) => {
+        if (item.type !== "choice") {
+          delete item.targetSequences;
         }
       });
 

@@ -43,7 +43,7 @@ const DialogueConverter = () => {
             title: title || `Dialogue ${scene}-${sequence}`,
             timestamp: new Date().toISOString(),
           },
-          dialogues: jsonResult.dialogues, // Extract the dialogues array from the result
+          ...jsonResult, // Spread the entire result, including the 'dialogues' wrapper
         };
       } catch (error) {
         console.error("GPT conversion error:", error);
@@ -261,13 +261,17 @@ const DialogueConverter = () => {
     try {
       // Use the DialogueService method for consistency
       DialogueService.exportToFileSystem(
-        convertedJson,
+        { dialogues: convertedJson.dialogues },
         `dialogue_${sceneNumber}_${sequenceNumber}.json` // Use sequence as-is
       );
     } catch (error) {
       console.error("Export error:", error);
       // Fallback to manual export if DialogueService fails
-      const jsonString = JSON.stringify(convertedJson, null, 2);
+      const jsonString = JSON.stringify(
+        { dialogues: convertedJson.dialogues },
+        null,
+        2
+      );
       const blob = new Blob([jsonString], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -583,7 +587,7 @@ GPT will automatically detect the format and convert it appropriately.`}
                         {item.metadata.title}
                       </p>
                       <p className="text-xs text-gray-500">
-                        {item.dialogues.length} dialogues
+                        {item.dialogues ? item.dialogues.length : 0} dialogues
                       </p>
                     </div>
                     <div className="flex space-x-2">
@@ -619,14 +623,14 @@ GPT will automatically detect the format and convert it appropriately.`}
                     </h5>
                     <div className="bg-gray-50 rounded-md p-4 overflow-x-auto max-h-96 overflow-y-auto">
                       <pre className="text-sm text-gray-800 whitespace-pre-wrap">
-                        {JSON.stringify(item.dialogues, null, 2)}
+                        {JSON.stringify({ dialogues: item.dialogues }, null, 2)}
                       </pre>
                     </div>
                     <div className="mt-3 flex justify-end space-x-2">
                       <button
                         onClick={() => {
                           const jsonString = JSON.stringify(
-                            item.dialogues,
+                            { dialogues: item.dialogues },
                             null,
                             2
                           );
@@ -775,7 +779,11 @@ GPT will automatically detect the format and convert it appropriately.`}
                 </h4>
                 <div className="bg-gray-50 rounded-md p-4 overflow-x-auto max-h-64 overflow-y-auto">
                   <pre className="text-sm text-gray-800 whitespace-pre-wrap">
-                    {JSON.stringify(editingItem.dialogues, null, 2)}
+                    {JSON.stringify(
+                      { dialogues: editingItem.dialogues },
+                      null,
+                      2
+                    )}
                   </pre>
                 </div>
               </div>
@@ -811,12 +819,6 @@ GPT will automatically detect the format and convert it appropriately.`}
             <div className="space-x-2">
               <button
                 onClick={() => {
-                  console.log("DialogueService:", DialogueService);
-                  console.log(
-                    "exportToFileSystem method:",
-                    DialogueService.exportToFileSystem
-                  );
-
                   try {
                     // Export the raw array, not wrapped in dialogues object
                     DialogueService.exportToFileSystem(
@@ -858,7 +860,7 @@ GPT will automatically detect the format and convert it appropriately.`}
           </div>
           <div className="bg-gray-50 rounded-md p-4 overflow-x-auto">
             <pre className="text-sm text-gray-800 whitespace-pre-wrap">
-              {JSON.stringify(convertedJson.dialogues, null, 2)}
+              {JSON.stringify({ dialogues: convertedJson.dialogues }, null, 2)}
             </pre>
           </div>
         </div>

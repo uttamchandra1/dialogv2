@@ -7,6 +7,8 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^17.2.0",
+    "figma-api": "^2.0.2-beta",
+    "figma-js": "^1.16.1-0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "react": "^18.2.0",

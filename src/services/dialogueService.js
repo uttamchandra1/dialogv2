@@ -306,7 +306,7 @@ class DialogueService {
     };
   }
 
-  static generateZipFileStructure(batchDialogues) {
+  static generateZipFileStructure(batchDialogues, includeFigma = false) {
     const structure = {};
 
     console.log("Batch dialogues:", batchDialogues);
@@ -317,14 +317,14 @@ class DialogueService {
       const { metadata } = dialogue;
       const scenePath = metadata.scene;
       const sequencePath = `${scenePath}/${metadata.sequence}`;
-      const filePath = `${sequencePath}/dialogue.json`;
+      const jsonFilePath = `${sequencePath}/dialogue.json`;
 
       console.log("Dialogues to process:", dialogue.dialogues);
       console.log("Type of dialogues:", typeof dialogue.dialogues);
       console.log("Is array:", Array.isArray(dialogue.dialogues));
 
       // Only export the clean dialogues structure, no metadata
-      structure[filePath] = {
+      structure[jsonFilePath] = {
         dialogues: dialogue.dialogues.map((d) => {
           if (d.type === "narration") {
             return {
@@ -348,7 +348,44 @@ class DialogueService {
           return d;
         }),
       };
+
+      // Add Figma file if requested
+      if (includeFigma) {
+        const figmaFilePath = `${sequencePath}/dialogue.figma.json`;
+        // We'll handle Figma file generation in the calling function
+        // to avoid async issues in the forEach loop
+        structure[figmaFilePath] = null; // Placeholder, will be filled later
+      }
     });
+
+    return structure;
+  }
+
+  /**
+   * Generate complete zip file structure with Figma files
+   * @param {Array} batchDialogues - Array of dialogue data objects
+   * @param {boolean} includeFigma - Whether to include Figma files
+   * @returns {Promise<Object>} - Complete file structure with Figma files
+   */
+  static async generateCompleteZipStructure(
+    batchDialogues,
+    includeFigma = false
+  ) {
+    const structure = await this.generateZipFileStructure(
+      batchDialogues,
+      false // Don't include individual Figma files in the structure
+    );
+
+    if (includeFigma) {
+      // Import FigmaFileGenerator
+      const { default: FigmaFileGenerator } = await import(
+        "./figmaFileGenerator.js"
+      );
+
+      // Add single Figma file with all dialogues
+      structure["Dialogues_with_Figma.json"] =
+        FigmaFileGenerator.generateSingleFigmaFileString(batchDialogues);
+    }
 
     return structure;
   }

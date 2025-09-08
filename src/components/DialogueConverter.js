@@ -228,7 +228,7 @@ const DialogueConverter = () => {
     setBatchDialogues((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handleExportBatch = () => {
+  const handleExportBatch = async (includeFigma = false) => {
     if (batchDialogues.length === 0) {
       alert("No dialogues in batch to export");
       return;
@@ -236,17 +236,109 @@ const DialogueConverter = () => {
 
     console.log("Exporting batch dialogues:", batchDialogues);
 
-    const zip = new JSZip();
-    const fileStructure =
-      DialogueService.generateZipFileStructure(batchDialogues);
+    setIsProcessing(true);
+    try {
+      const zip = new JSZip();
+      const fileStructure = await DialogueService.generateCompleteZipStructure(
+        batchDialogues,
+        includeFigma
+      );
 
-    Object.entries(fileStructure).forEach(([filePath, data]) => {
-      zip.file(filePath, JSON.stringify(data, null, 2));
-    });
+      Object.entries(fileStructure).forEach(([filePath, data]) => {
+        if (data !== null) {
+          if (filePath.endsWith("Dialogues_with_Figma.json")) {
+            // Figma files are already JSON strings
+            zip.file(filePath, data);
+          } else {
+            // Regular JSON files need to be stringified
+            zip.file(filePath, JSON.stringify(data, null, 2));
+          }
+        }
+      });
 
-    zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, "Dialogues.zip");
-    });
+      const content = await zip.generateAsync({ type: "blob" });
+      const fileName = includeFigma
+        ? "Dialogues_with_Figma.zip"
+        : "Dialogues.zip";
+      saveAs(content, fileName);
+    } catch (error) {
+      console.error("Export error:", error);
+      alert("Error exporting dialogues. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleExportFigmaOnly = async () => {
+    if (batchDialogues.length === 0) {
+      alert("No dialogues in batch to export");
+      return;
+    }
+
+    console.log("Exporting Figma file only:", batchDialogues);
+
+    setIsProcessing(true);
+    try {
+      // Import FigmaApiService
+      const { default: FigmaApiService } = await import(
+        "../services/figmaApiService.js"
+      );
+
+      // Check if API is configured
+      if (!FigmaApiService.isConfigured()) {
+        const instructions = FigmaApiService.getConfigurationInstructions();
+        alert(
+          `${instructions.title}\n\n${instructions.steps.join("\n")}\n\n${
+            instructions.note
+          }`
+        );
+        return;
+      }
+
+      // Create Figma-compatible file
+      const result = await FigmaApiService.createFigmaFile(
+        batchDialogues,
+        `Dialogue Studio - ${new Date().toLocaleDateString()}`
+      );
+
+      if (result.success) {
+        // Download the Figma-compatible JSON file
+        const figmaContent = JSON.stringify(result.figmaFile, null, 2);
+        const blob = new Blob([figmaContent], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Dialogues_with_Figma.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        alert(`🎉 Figma-compatible file created successfully!
+
+File downloaded as: "Dialogues_with_Figma.json"
+
+Your dialogues have been organized into a Figma-compatible structure with:
+- Scene-based organization
+- Sequence groupings  
+- Character dialogues, narration, and choice blocks
+- Professional styling and layout
+
+To use this file:
+1. Import it into Figma using File > Import
+2. Or use it with Figma plugins that support JSON import
+3. Or use it as a reference for implementing the dialogue UI
+
+Note: This creates a Figma-compatible JSON structure that can be imported into Figma or used with design tools.`);
+      }
+    } catch (error) {
+      console.error("Figma export error:", error);
+      alert(
+        `Error creating Figma file: ${error.message}\n\nPlease check your API configuration and try again.`
+      );
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const handleExport = () => {
@@ -535,16 +627,24 @@ GPT will automatically detect the format and convert it appropriately.`}
                 {isProcessing ? "Adding to Batch..." : "Add to Batch"}
               </button>
               <button
-                onClick={handleExportBatch}
-                disabled={batchDialogues.length === 0}
+                onClick={() => handleExportBatch(false)}
+                disabled={batchDialogues.length === 0 || isProcessing}
                 className="flex-1 bg-purple-600 text-white py-3 px-6 rounded-md hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               >
-                Export All as ZIP ({batchDialogues.length})
+                Export JSON ZIP ({batchDialogues.length})
                 {editedItems.size > 0 && (
                   <span className="ml-2 bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">
                     with {editedItems.size} edits
                   </span>
                 )}
+              </button>
+              <button
+                onClick={handleExportFigmaOnly}
+                disabled={batchDialogues.length === 0 || isProcessing}
+                className="flex-1 bg-pink-600 text-white py-3 px-6 rounded-md hover:bg-pink-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                title="Create a Figma-compatible JSON file with your dialogues organized by scenes and sequences"
+              >
+                Export Figma Layout ({batchDialogues.length})
               </button>
             </>
           )}
